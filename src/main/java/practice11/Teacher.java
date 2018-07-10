@@ -2,7 +2,7 @@ package practice11;
 
 import java.util.LinkedList;
 
-public class Teacher extends Person{
+public class Teacher extends Person implements NotifyLeaderListener{
 
     public Klass klass;
     public LinkedList<Klass> classes;
@@ -10,17 +10,20 @@ public class Teacher extends Person{
     public Teacher(int id,String name, int age, LinkedList<Klass> classes){
         super(id,name,age);
         setClasses(classes);
+        for(Klass k :classes){
+            k.addNotifyListener(this);
+        }
     }
 
     public Teacher(int id,String name, int age, Klass klass){
         super(id,name,age);
         setKlass(klass);
+        klass.addNotifyListener(this);
     }
 
     public Teacher(int id,String name, int age){
         super(id,name,age);
     }
-
 
 
     public LinkedList<Klass> getClasses() {
@@ -73,5 +76,15 @@ public class Teacher extends Person{
             if(chk){break;}
         }
         return chk;
+    }
+
+    @Override
+    public void notifyAppendListener(Student student){
+        System.out.print("I am "+name+". I know "+student.name+" has joined Class "+student.klass.number+".\n");
+    }
+
+    @Override
+    public void notifyLeaderListener(Student student){
+        System.out.print("I am "+name+". I know "+student.name+" become Leader of Class "+student.klass.number+".\n");
     }
 }

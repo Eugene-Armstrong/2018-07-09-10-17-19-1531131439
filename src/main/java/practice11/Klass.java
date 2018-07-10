@@ -1,8 +1,9 @@
 package practice11;
 
-public class Klass {
+public class Klass implements NotifiedLeaderListener{
     public int number;
     public Student leader;
+    Teacher teacher;
     public Klass(int number){
         setNumber(number);
     }
@@ -24,6 +25,9 @@ public class Klass {
             System.out.print("It is not one of us.\n");
         }else{
             this.leader = student;
+            if(this.teacher!=null){
+                this.teacher.notifyLeaderListener(student);
+            }
         }
     }
 
@@ -33,6 +37,9 @@ public class Klass {
 
     public void appendMember(Student student){
         student.setKlass(this);
+        if(this.teacher!=null){
+            this.teacher.notifyAppendListener(student);
+        }
     }
 
     public boolean isIn(Student student){
@@ -41,5 +48,10 @@ public class Klass {
         }else{
             return false;
         }
+    }
+
+    @Override
+    public void addNotifyListener(Teacher teacher){
+        this.teacher = teacher;
     }
 }
