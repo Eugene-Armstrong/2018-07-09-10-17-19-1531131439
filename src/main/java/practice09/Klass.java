@@ -32,6 +32,6 @@ public class Klass {
     }
 
     public void appendMember(Student student){
-        student.klass = this;
+        student.setKlass(this);
     }
 }
