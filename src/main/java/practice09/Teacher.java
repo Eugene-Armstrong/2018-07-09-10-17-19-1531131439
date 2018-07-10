@@ -1,9 +1,6 @@
 package practice09;
 
 public class Teacher extends Person{
-    public int id;
-    public String name;
-    public int age;
     public Klass klass;
 
     public Teacher(int id,String name, int age, Klass klass){
@@ -23,30 +20,8 @@ public class Teacher extends Person{
         this.klass = klass;
     }
 
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public int getAge() {
-        return age;
-    }
-
-    @Override
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-
     public String introduce(){
-        Person p = new Person(id,name,age);
-        String result = p.introduce() +" I am a Teacher. I teach ";
+        String result = super.introduce() +" I am a Teacher. I teach ";
         result += klass == null?"No Class.":klass.getDisplayName()+".";
         return result;
     }

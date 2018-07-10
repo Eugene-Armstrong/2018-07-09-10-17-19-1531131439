@@ -3,9 +3,6 @@ package practice10;
 import java.util.LinkedList;
 
 public class Teacher extends Person{
-    public int id;
-    public String name;
-    public int age;
     public Klass klass;
     public LinkedList<Klass> classes;
 
@@ -23,16 +20,6 @@ public class Teacher extends Person{
         super(id,name,age);
     }
 
-    @Override
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public LinkedList<Klass> getClasses() {
         return classes;
     }
@@ -48,27 +35,6 @@ public class Teacher extends Person{
     public void setKlass(Klass klass) {
         this.klass = klass;
     }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public int getAge() {
-        return age;
-    }
-
-    @Override
-    public void setAge(int age) {
-        this.age = age;
-    }
-
 
     public String introduce(){
         Person p = new Person(id,name,age);
@@ -91,8 +57,7 @@ public class Teacher extends Person{
     }
 
     public String introduceWith(Student student){
-        Person p = new Person(id,name,age);
-        String result = p.introduce() +" I am a Teacher. I ";
+        String result = super.introduce() +" I am a Teacher. I ";
         result += isTeaching(student)?"teach "+student.name+".":"don't teach "+student.name+".";
         return result;
     }
